@@ -4,3 +4,7 @@
     // of allergens in that area
 // return allergen information to user
     // add 
+
+
+fetch('https://api.openaq.org/v2/cities?country_id=US').then(function (response){
+console.log("response.json:", response.json())})
