@@ -1,8 +1,6 @@
 # pollen-tracker
 tracks pollen data in a user designated area
 
+## APIs
 
-## APIs 
-
-https://docs.breezometer.com/
-https://developers.google.com/maps
+https://docs.breezometer.com/ https://developers.google.com/maps
