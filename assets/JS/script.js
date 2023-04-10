@@ -12,7 +12,4 @@ var park = `https://developer.nps.gov/api/v1/passportstamplocations?q=${testURLH
 
 var url = new URL(park)
 
-fetch(url).then(response => console.log(response.json()));
-
-
-// const params = [//     {//         name: "q",//         values: ["zion ", "national ", "park "]//     }, {//         name: "limit",//         values: ["5"]//     }, {//         name: "api_key",//         values: ["bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea"]//     }// ]// const initParams = (params) => params.reduce((acc, curr) => {//     const arr = curr.values.map(x => [curr.name, x])//     return acc.concat(arr)// }, [])// const searchParams = new URLSearchParams(initParams(params))// console.log(searchParams.toString())
+fetch(url).then(response => response.json()).then(data => console.log('DATA ZERO: ', data.data[0].parks[0].fullName));
