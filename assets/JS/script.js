@@ -1,4 +1,3 @@
-
 // Save search history to local storage
 var search_history = [];
 var plants = [];
@@ -11,7 +10,6 @@ var cardContainer = document.querySelector("#card-container");
 var searchContainer = document.querySelector(".find-plants-container")
 var resultsPage = document.getElementById("results-page")
 var card = document.getElementsByClassName("plant-card")
-
 
 
 // save search to history
@@ -28,7 +26,7 @@ function addToHistory(plant_name) { // fetchNationParkAPI(plant_name)
     var plant = document.createElement("p")
     plant.className = "button is-light is-warning is-fullwidth is-size-5"
     plant.innerHTML = plant_name
-    cardContainer.appendChild(plant);
+    // cardContainer.appendChild(plant);
     return plantName;
 
 }
@@ -84,6 +82,7 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
         fetchNationParkAPI(plantName);
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
         // searchBox.value = ''
+        findPlants()
 
     }
 
@@ -99,6 +98,7 @@ searchButton.addEventListener('click', function (event) {
     fetchNationParkAPI(plantName);
     console.log('City Saved To History: ', plantName);
     searchBox.value = ''
+    findPlants()
 
 
 });
@@ -108,15 +108,13 @@ searchButton.addEventListener('click', function (event) {
 placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
 
 
-
-function findPlants(e){
-    e.preventDefault()
+function findPlants() {
     searchContainer.classList.add('hide')
     resultsPage.classList.remove('hide')
 }
 
-function displayPlantInfo(){
-    plants.forEach(function(plants){
+function displayPlantInfo() {
+    plants.forEach(function (plants) {
         var plantCard = document.createElement("div")
         plantCard.classList.add("col", "s6", "m4", "xl2", "plant-card");
         var card = document.createElement("div")
@@ -133,21 +131,19 @@ function displayPlantInfo(){
         scientificName.classList.add("scientific-name", "truncate")
 
         resultsPage.appendChild(plantCard)
-          plantCard.appendChild(card)
-            card.appendChild(cardImage)
-              cardImage.appendChild(plantImage)
-            card.appendChild(cardContent)
-              cardContent.appendChild(cardTitle)
-              cardContent.appendChild(scientificName)
+        plantCard.appendChild(card)
+        card.appendChild(cardImage)
+        cardImage.appendChild(plantImage)
+        card.appendChild(cardContent)
+        cardContent.appendChild(cardTitle)
+        cardContent.appendChild(scientificName)
     })
 }
 
 
-
-let string = 'zion national park'
-let test = fetch(`https://developer.nps.gov/api/v1/passportstamplocations?q=${string}&limit=5&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`).then(function(response){
-    console.log("response.json():", response)
-    response.json().then(function (data){
-    console.log("data:", data)
-})})
-
+// let string = 'zion national park'
+// let test = fetch(`https://developer.nps.gov/api/v1/passportstamplocations?q=${string}&limit=5&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`).then(function(response){
+//     console.log("response.json():", response)
+//     response.json().then(function (data){
+//     console.log("data:", data)
+// })})
