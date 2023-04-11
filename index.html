@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Fruktur&family=Lily+Script+One&family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
@@ -34,10 +38,18 @@
           <input
             type="search"
             id="place-search-input"
+            class="input"
             placeholder="example form"
           />
-          <button>Search</button>
+          <p class="button is-fullwidth" id="search-button">Search</p>
         </form>
+        <div
+          id="card-container"
+          class="table-container pt-2"
+          style="height: 50vh; overflow-y: auto"
+        >
+          <!-- <p class="button is-light is-warning is-fullwidth is-size-5">Miami</p> -->
+        </div>
       </div>
 
       <!-- explanation -->

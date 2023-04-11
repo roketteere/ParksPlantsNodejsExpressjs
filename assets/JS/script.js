@@ -1,7 +1,35 @@
+// Save search history to local storage
+var search_history = [];
+var plantName = ''
+
+// Element Variables
+var searchButton = document.querySelector("#search-button");
+var searchBox = document.querySelector("#place-search-input");
+var cardContainer = document.querySelector("#card-container");
+
+
+// save search to history
+function saveSearch(global_history) {
+    if (localStorage.setItem('search-history', global_history)) {
+        console.log('HISTORY SAVED SUCCESSFULLY');
+
+    }
+}
+
+// add search input to search history and append element
+function generateCards(plant_name) { // fetchNationParkAPI(plant_name)
+    search_history.push(plant_name);
+    var plant = document.createElement("p")
+    plant.className = "button is-light is-warning is-fullwidth is-size-5"
+    plant.innerHTML = plant_name
+    cardContainer.appendChild(plant);
+    return plantName;
+
+}
+
 // fetch to national park api and get park name and state, then return them
 function fetchNationParkAPI(keyword) {
-    var API_URL = `https://developer.nps.gov/api/v1/passportstamplocations?q=${keyword}&limit=5&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
-
+    var API_URL = `https://developer.nps.gov/api/v1/passportstamplocations?q=${keyword}&limit=10&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
     var url = new URL(API_URL)
     var state = ''
     var parkName = ''
@@ -12,42 +40,57 @@ function fetchNationParkAPI(keyword) {
     })
 }
 
-// TODO
 // Function that calls the trefle API
-function fetchMapData(keyword) {
-    fetch(`https://www.mapquestapi.com/search/v3/prediction?key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&limit=5&collection=address,city&q=${keyword}`).then(promise => promise.json()).then(data => { // JSON.stringify(data);
+function fetchTrefleAPI(keyword) {
+    fetch(`http://URL=>>>>${keyword}`).then(promise => promise.json()).then(data => {
         console.log(data.results)
-        for (var i = 0; i < data.results.length; i++) {
-            var listCity = data.results[i].name;
-            var city = data.results[i].name;
-            var state = data.results[i].place.properties.state;
-            var longitude = data.results[i].place.geometry.coordinates[0];
-            var latitude = data.results[i].place.geometry.coordinates[1];
-            var resultList = document.createElement("p");
-            // resultList.text = listCity;
-            // resultList.value = listCity;
-            // resultBlock.appendChild(resultList);
-            // resultContainer.setAttribute("style", "display:block;");
-            // cities.push([city, state, longitude, latitude]);
-            // console.log('Last Log: \n' + cities[i]);
-            console.log(`City: ${city}\nState: ${state}\nLongitude: ${longitude}\nLatitude: ${latitude}`)
+    })
+};
 
 
-        }
+// add event listener to search box
+searchBox.addEventListener('keydown', function (event) { // event.preventDefault();
+    var inputEl = event.target;
+    plantName = inputEl.value;
+    console.log(plantName);
+})
+
+// Keyup event listener
+// add event listener to search box
+searchBox.addEventListener('keyup', function (event) { // event.preventDefault();
+    var inputEl = event.target;
+    plantName = inputEl.value;
+    console.log(plantName);
+
+})
+// on keyboard enter, search
+searchBox.addEventListener('keypress', function (event) { // event.preventDefault();
+    event.target
+    if (event.key === "Enter") {
+        event.preventDefault();
+        generateCards(event.target.value);
+        saveSearch(search_history);
+        fetchNationParkAPI(plantName);
+        console.log('::KEYBOARD:: City Saved To History: ', plantName);
+        searchBox.value = ''
+
+    }
+
+})
 
 
-    });
-}
-// sic      label   count
-// =======================
-// 799951 	Parks 	51,424
-// https://www.mapquestapi.com/search/v4/place?location=-122.419291%2C37.761076&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20&q=Zion%20National%20Park
+// click event listener for search button
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    event.target;
+    // addToHistory(cityName);
+    saveSearch(search_history);
+    generateCards(plantName);
+    console.log('City Saved To History: ', plantName);
+    searchBox.value = ''
 
 
-// https://www.mapquestapi.com/search/v4/place?q=Miami&category=sic%799951&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20
-
-
-placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
+});
 
 
 // TODO: in the future include accesibility and other park specific info
@@ -79,6 +122,19 @@ placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.queryS
 // TODO: habitat
 // TODO: other locations
 
+//
+// *** NOTES AREA - REFERENCE ONLY IGNORE ***
+//
 // var test_search = `zion national park`
 // fetchNationParkAPI(test_search);
 // fetchMapData(test_search);
+// sic      label   count
+// =======================
+// 799951 	Parks 	51,424
+// https://www.mapquestapi.com/search/v4/place?location=-122.419291%2C37.761076&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20&q=Zion%20National%20Park
+
+
+// https://www.mapquestapi.com/search/v4/place?q=Miami&category=sic%799951&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20
+
+// Auto Complete directly from MapQuest API
+// placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
