@@ -1,11 +1,17 @@
+
 // Save search history to local storage
 var search_history = [];
-var plantName = ''
+var plants = [];
 
 // Element Variables
 var searchButton = document.querySelector("#search-button");
 var searchBox = document.querySelector("#place-search-input");
 var cardContainer = document.querySelector("#card-container");
+
+var searchContainer = document.querySelector(".find-plants-container")
+var resultsPage = document.getElementById("results-page")
+var card = document.getElementsByClassName("plant-card")
+
 
 
 // save search to history
@@ -17,7 +23,7 @@ function saveSearch(global_history) {
 }
 
 // add search input to search history and append element
-function generateCards(plant_name) { // fetchNationParkAPI(plant_name)
+function addToHistory(plant_name) { // fetchNationParkAPI(plant_name)
     search_history.push(plant_name);
     var plant = document.createElement("p")
     plant.className = "button is-light is-warning is-fullwidth is-size-5"
@@ -73,7 +79,7 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
     event.target
     if (event.key === "Enter") {
         event.preventDefault();
-        generateCards(event.target.value);
+        addToHistory(event.target.value);
         saveSearch(search_history);
         fetchNationParkAPI(plantName);
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
@@ -88,9 +94,8 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
 searchButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.target;
-    // addToHistory(cityName);
     saveSearch(search_history);
-    generateCards(plantName);
+    addToHistory(plantName);
     fetchNationParkAPI(plantName);
     console.log('City Saved To History: ', plantName);
     searchBox.value = ''
@@ -99,48 +104,50 @@ searchButton.addEventListener('click', function (event) {
 });
 
 
-// TODO: in the future include accesibility and other park specific info
-
-// TODO: send state data to trefle api for all plants
-// TODO: convert state string to TDWG code
-// TODO: fetch plants with TDWG code
-// TODO: return all plants
-
-// TODO: on page load
-// TODO: check memory for any saved locations
-// TODO: display modal
-// TODO: include input field
-// TODO: include search button
-// TODO: on button press
-// TODO: clear input search box
-// TODO: save location to memory
-// TODO: hide modal
-// TODO: append plant cards to page
-
-// TODO: build plant cards
-// TODO: take in an array of data from trefle API
-// TODO: create a plant card container
-// TODO: display plant name as h2 and image
-// TODO: addEventListener for clicks on card
-// TODO: onClick display modal with plant information
-// TODO: add icons for edible (Edible: skull or thumbs up)
-// TODO: add taxonimy
-// TODO: habitat
-// TODO: other locations
-
-//
-// *** NOTES AREA - REFERENCE ONLY IGNORE ***
-//
-// var test_search = `zion national park`
-// fetchNationParkAPI(test_search);
-// fetchMapData(test_search);
-// sic      label   count
-// =======================
-// 799951 	Parks 	51,424
-// https://www.mapquestapi.com/search/v4/place?location=-122.419291%2C37.761076&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20&q=Zion%20National%20Park
-
-
-// https://www.mapquestapi.com/search/v4/place?q=Miami&category=sic%799951&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20
-
 // Auto Complete directly from MapQuest API
 placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
+
+
+
+function findPlants(e){
+    e.preventDefault()
+    searchContainer.classList.add('hide')
+    resultsPage.classList.remove('hide')
+}
+
+function displayPlantInfo(){
+    plants.forEach(function(plants){
+        var plantCard = document.createElement("div")
+        plantCard.classList.add("col", "s6", "m4", "xl2", "plant-card");
+        var card = document.createElement("div")
+        card.classList.add("card", "hoverable", "rounded")
+        var cardImage = document.createElement("div")
+        cardImage.classList.add("card-image")
+        var plantImage = document.createElement("img")
+        plantImage.setAttribute("src", plants[i].imageUrl)
+        var cardContent = document.createElement("div")
+        cardContent.classList.add("card-content")
+        var cardTitle = document.createElement("span")
+        cardTitle.classList.add("card-title", truncate)
+        var scientificName = document.createElement("p")
+        scientificName.classList.add("scientific-name", "truncate")
+
+        resultsPage.appendChild(plantCard)
+          plantCard.appendChild(card)
+            card.appendChild(cardImage)
+              cardImage.appendChild(plantImage)
+            card.appendChild(cardContent)
+              cardContent.appendChild(cardTitle)
+              cardContent.appendChild(scientificName)
+    })
+}
+
+
+
+let string = 'zion national park'
+let test = fetch(`https://developer.nps.gov/api/v1/passportstamplocations?q=${string}&limit=5&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`).then(function(response){
+    console.log("response.json():", response)
+    response.json().then(function (data){
+    console.log("data:", data)
+})})
+
