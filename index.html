@@ -10,97 +10,274 @@
       href="https://fonts.googleapis.com/css2?family=Fruktur&family=Lily+Script+One&family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/CSS/style.css" /> -->
+
+    <!-- materialize css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" href="./assets/CSS/style.css" />
+
+
     <title>Document</title>
   </head>
+
   <body>
     <header>
-      <div class="title">Allergy Maps</div>
-      <nav>
-        <ul id="links">
-          <li><a href="#about">About</a></li>
-          <li><a href="">GitHub</a></li>
-          <li><a href="">**empty**</a></li>
-          <li><a href="">**empty**</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <!-- Hero section -->
-      <div id="hero"></div>
-      <!-- card in middle with form for allergy maps -->
-      <div class="card">
-        <form id="AMform" action="">
-          <input type="text" placeholder="example form" />
-          <button>Search</button>
-        </form>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper green darken-1">
+            <a href="" class="brand-logo left">Plants in Parks</a>
+            <ul id="nav-mobile" class="right">
+              <li><a href="#about">About</a></li>
+              <li><a href="">Github</a></li>
+              <li><a href="">Favorites</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
-      <!-- explanation -->
-      <!-- <div id="about">
-        <div class="sidebar"> About </div>
-        <div class="content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed beatae
-          porro velit excepturi illum libero? Velit, laborum dicta, a tenetur
-          fuga possimus magni recusandae ab rem ullam, quidem eveniet eligendi.
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo culpa
-          tenetur, quas, natus autem aperiam voluptatum deleniti dolor eos hic
-          mollitia possimus similique dignissimos, consectetur rerum! Aliquam
-          illo repellendus sint. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Corrupti libero quo, et accusantium aliquam nihil
-          deleniti ad est. Necessitatibus delectus magnam minus possimus? Iusto
-          odio iure et vel sapiente optio! Eveniet, voluptatem! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Porro optio dolores
-          doloremque fugiat tempore reiciendis beatae quo et quibusdam
-          accusamus. A illum ipsam alias natus odio fuga ullam esse aut!
-          Reprehenderit sint dignissimos ex debitis commodi voluptate iusto
-          doloribus possimus. Veniam, porro expedita nostrum obcaecati
-          doloribus, maiores, asperiores quaerat ratione esse illum odit ipsa
-          aut voluptatum totam repudiandae explicabo rerum. Molestias maxime
-          mollitia blanditiis distinctio repellendus ipsum incidunt delectus
-          voluptates dolore iure ratione, sapiente sunt nostrum explicabo, eaque
-          voluptatum. Et animi dolorum, eaque vitae eum harum non similique
-          reprehenderit natus. Quia, quod accusantium. Quis, odio iure. Nulla
-          magnam alias explicabo quos molestias quia eos ipsum voluptas vitae
-          optio. Voluptatum illum dolorem quasi dignissimos eos assumenda ipsum
-          earum harum rem itaque? Incidunt deleniti corporis aliquid! Optio
-          minima nemo aut dignissimos est accusamus neque nisi velit dolore?
-          Ducimus dolor quod, vitae expedita nisi autem ad dolorem voluptatem,
-          dolorum veritatis mollitia blanditiis nobis! Inventore iste temporibus
-          odit sint quo, culpa exercitationem consequatur animi numquam, eos
-          porro minus, aperiam fuga. Eum, sint non repudiandae doloribus rerum
-          vel aspernatur. Odio a illo veritatis ullam architecto? Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Est incidunt modi iusto
-          omnis numquam magnam odit inventore aperiam! Et vero sunt culpa nam
-          sapiente illo natus quis recusandae inventore. Illum? Laudantium
-          adipisci modi incidunt excepturi ab ex voluptatum ullam reprehenderit
-          nemo impedit accusamus, quos, ipsum placeat enim alias magnam
-          voluptatibus. Doloremque nesciunt necessitatibus numquam voluptate id
-          porro nam, voluptatem consequuntur? Esse modi at quibusdam labore
-          provident, sunt excepturi ad inventore voluptatum, dolore architecto
-          sapiente sint placeat sequi vero fuga nam aspernatur. Sit dolor
-          tempore modi fuga ipsum ullam, neque nulla. Repellat ipsum omnis, quia
-          dicta vero, consequuntur voluptate laboriosam distinctio consectetur
-          eius iusto quidem quisquam harum facilis, temporibus dolores. Eveniet
-          possimus quas odit omnis necessitatibus neque. Blanditiis nam in est.
-          Vel commodi saepe autem minus, vero reprehenderit rerum voluptates
-          omnis beatae aliquam ea, quod necessitatibus fuga. Incidunt ut beatae
-          in totam mollitia facere autem, vitae architecto minima debitis ab
-          rerum. Odit ullam delectus facere modi nam ratione aut, in voluptatem
-          eum consequuntur fugit iste pariatur, sit non aspernatur nisi laborum
-          ducimus tenetur, aliquam quidem ipsum amet. Repellendus minus
-          distinctio inventore. Mollitia nulla adipisci dignissimos. Natus
-          temporibus tempore fugiat tenetur doloremque alias laboriosam totam,
-          dolore nam voluptatibus sapiente, praesentium aspernatur ad inventore
-          sunt soluta ullam. Impedit soluta ab quo officiis eius! Inventore sint
-          tenetur aliquid nostrum nobis ex cumque labore quos cum quis ratione
-          placeat vero neque eos accusantium consequuntur iste explicabo, error
-          nulla! Incidunt, perspiciatis velit. Officia perferendis inventore
-          illum.
+    </header>
+
+    <div class="">
+      <main>
+        <!-- Hero section -->
+        <div class="responsive-img" id="hero"></div>
+
+        <!-- card in middle with form for allergy maps -->
+        <div class="find-plants-container">
+          <div class="find-plants hoverable">
+            <div class="h2">Enter a National Park Here:</div>
+            <form class="" id="" action="">
+              <input type="text" placeholder="park name" />
+            </form>
+            <button class="" id="search-btn">Search</button>
+          </div>
         </div>
-      </div>
-    </main>
-    <footer></footer> -->
+
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+              >Agree</a
+            >
+          </div>
+        </div>
+
+
+                  <!-- example card -->
+
+        <div class="row hide" id="results-page">
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+           
+          <div class="col s6 m4 xl2 plant-card">
+            <div class="card hoverable rounded">
+              <div class="card-image rounded">
+                <img src="./assets/CSS/images/o0i97sjusso11.jpg" />
+              </div>
+              <div class="card-content">
+                <span class="card-title truncate">Common name</span>
+                <p class="truncate">Scientific name</p>
+              </div>
+            </div>
+          </div>
+          
+          
+
+
+
+
+        </div>
+
+        <!-- explanation -->
+        <div id="about">
+          <div class="sidebar hide">About</div>
+          <div class="content hide">
+            magnam, illum aliquam saepe! Natus, animi rem! Dolore vel inventore
+            quisquam voluptatem optio neque illum ut modi officiis, tenetur odit
+            earum exercitationem obcaecati a ipsam, delectus explicabo, ad qui
+            velit in laudantium, cum harum? Dolorem et eius aperiam veritatis
+            voluptate voluptates praesentium soluta eaque? Aspernatur obcaecati
+            delectus quo laboriosam explicabo et nostrum minus officiis ducimus,
+            voluptatem accusamus non provident corrupti rerum error quasi
+            architecto maiores eius! Optio voluptatum inventore a consequuntur
+            aliquid excepturi voluptate? Aliquam, dicta quisquam? Voluptatibus
+            dolorem architecto soluta fugit eveniet necessitatibus laborum
+            perferendis, autem, porro natus dolor fugiat sapiente id dolore amet
+            consectetur cum, fuga a eligendi iste deleniti suscipit.
+            Perferendis. Culpa impedit quia harum dolore hic unde est possimus
+            fugiat vel quibusdam alias vero aut, dignissimos recusandae quam
+            reiciendis? Laudantium, autem quos? Doloremque aperiam repudiandae
+            tempore veniam esse dolorum ut. Nemo suscipit nam ipsa nulla
+            nostrum! Enim ratione eius quidem quas repellendus velit numquam,
+            esse nobis. Quae, temporibus rem quas expedita dicta nulla ad
+            sapiente! Deserunt earum adipisci reprehenderit optio. Ipsa ipsam
+            vel provident perferendis atque! Laboriosam cupiditate sed rem
+            aliquid quam ut, inventore dignissimos tenetur minus? Dignissimos
+            minima aut maxime quae. Quo aspernatur, voluptas accusantium sunt in
+            quisquam, libero ullam tempora iste earum provident? Quos autem iste
+            magnam excepturi nisi quis tempore commodi sunt assumenda. Dolores
+            et animi ipsam quasi eligendi dolore, omnis quae amet suscipit qui,
+            ipsum architecto distinctio eius alias fugit reiciendis tenetur,
+            quam voluptatem debitis? Consectetur adipisci ab veritatis,
+            similique molestias natus Dolor modi quae excepturi expedita impedit
+            eaque, tempora corrupti blanditiis. Odit beatae error aliquam.
+            Deserunt ipsum quos incidunt ut totam consequuntur pariatur porro
+            iste quidem omnis rem est quo autem minus expedita, corrupti enim
+            asperiores. Voluptate aperiam maiores quibusdam, quae ratione ab
+            inventore alias. Officiis fuga veritatis perferendis repellat
+            doloribus ab iusto unde excepturi sint ad praesentium aspernatur,
+            magni earum doloremque quo maiores id blanditiis, magnam natus
+            aperiam? Laudantium deleniti impedit soluta eos incidunt. Iure
+            aperiam neque fugit dolor ducimus ipsum at nisi, voluptatibus nulla,
+            iusto quidem mollitia eaque velit modi facere in repellendus
+            accusantium quam odit animi esse eum delectus. Ut, repudiandae
+            totam? Quasi provident eaque eum dolore, sequi reprehenderit numquam
+            corporis illum sunt earum odio error blanditiis iusto accusamus
+            possimus eius reiciendis quos, qui molestiae quo pariatur!
+            Laudantium id quod expedita ratione! Voluptatem libero accusantium
+            adipisci dignissimos impedit at quod doloremque eius ipsa similique
+            provident, nobis architecto quasi expedita eum animi ut nemo dolores
+            magni beatae sunt amet odit veniam repellendus. Temporibus. Commodi,
+            possimus molestias blanditiis libero ratione placeat expedita odio
+            sapiente tempore ullam quis atque maxime asperiores dicta voluptas,
+            minus ab, quaerat accusamus error. Expedita provident a numquam
+            blanditiis dolorum atque? Distinctio tenetur minus libero aliquid
+            perferendis commodi amet optio odio nam modi provident dicta tempore
+            explicabo assumenda odit, officia quae ipsa? Vero natus, aliquam
+            tempora recusandae magnam ducimus soluta qui. Doloribus eius officia
+            animi hic, fugiat nobis natus, nemo expedita labore perferendis
+            voluptates cumque ea tempora dolore illo. Reprehenderit perspiciatis
+            illum laboriosam doloremque voluptatem repellat ipsam hic quia quis.
+            Facilis!
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/style.css"></script>
+
     <script src="./assets/JS/script.js"></script>
   </body>
 </html>
