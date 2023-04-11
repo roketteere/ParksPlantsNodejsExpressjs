@@ -91,6 +91,7 @@ searchButton.addEventListener('click', function (event) {
     // addToHistory(cityName);
     saveSearch(search_history);
     generateCards(plantName);
+    fetchNationParkAPI(plantName);
     console.log('City Saved To History: ', plantName);
     searchBox.value = ''
 
@@ -142,4 +143,4 @@ searchButton.addEventListener('click', function (event) {
 // https://www.mapquestapi.com/search/v4/place?q=Miami&category=sic%799951&sort=distance&feedback=false&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&pageSize=20
 
 // Auto Complete directly from MapQuest API
-// placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
+placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
