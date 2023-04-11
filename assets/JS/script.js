@@ -29,14 +29,19 @@ function generateCards(plant_name) { // fetchNationParkAPI(plant_name)
 
 // fetch to national park api and get park name and state, then return them
 function fetchNationParkAPI(keyword) {
-    var API_URL = `https://developer.nps.gov/api/v1/passportstamplocations?q=${keyword}&limit=10&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
+    var API_URL = `https://developer.nps.gov/api/v1/parks?q=${keyword}&limit=10&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
     var url = new URL(API_URL)
     var state = ''
     var parkName = ''
     fetch(url).then(response => response.json()).then(data => {
-        state = data.data[0].parks[0].states;
-        parkName = data.data[0].parks[0].fullName;
-        console.log('Park Information: \n', state, "\n", parkName);
+        for (var i = 0; i < data.data.length; i++) {
+            console.log('DATA: ', data.data[i].states);
+            console.log('Data ', data.data[i].fullName);
+        }
+
+        // state = data.data[0].parks[0].states;
+        // parkName = data.data[0].parks[0].fullName;
+        // console.log('Park Information: \n', state, "\n", parkName);
     })
 }
 
@@ -72,7 +77,7 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
         saveSearch(search_history);
         fetchNationParkAPI(plantName);
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
-        searchBox.value = ''
+        // searchBox.value = ''
 
     }
 
