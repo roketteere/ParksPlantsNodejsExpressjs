@@ -31,7 +31,11 @@
       <!-- card in middle with form for allergy maps -->
       <div class="card">
         <form id="AMform" action="">
-          <input type="text" placeholder="example form" />
+          <input
+            type="search"
+            id="place-search-input"
+            placeholder="example form"
+          />
           <button>Search</button>
         </form>
       </div>
@@ -101,7 +105,14 @@
       </div>
     </main>
     <footer></footer>
-    <script src="./assets/style.css"></script>
+
+    <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"
+    />
+
     <script src="/assets/JS/script.js"></script>
   </body>
 </html>
