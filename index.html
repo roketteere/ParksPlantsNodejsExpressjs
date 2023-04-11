@@ -7,6 +7,10 @@
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Fruktur&family=Lily+Script+One&family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
@@ -18,7 +22,11 @@
     />
 
     <link rel="stylesheet" href="./assets/CSS/style.css" />
-
+   <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"
+    />
 
     <title>Document</title>
   </head>
@@ -50,10 +58,11 @@
           <div class="find-plants hoverable">
             <div class="h2">Enter a National Park Here:</div>
             <form class="" id="" action="">
-              <input type="text" placeholder="park name" />
+              <input id="place-search-input" type="text" placeholder="park name" />
             </form>
             <button class="" id="search-btn">Search</button>
           </div>
+
         </div>
 
         <div id="modal1" class="modal">
@@ -275,9 +284,13 @@
     </div>
     <footer></footer>
 
+
+    <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+   
+    <script src="/assets/JS/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/style.css"></script>
 
-    <script src="./assets/JS/script.js"></script>
+
   </body>
 </html>
