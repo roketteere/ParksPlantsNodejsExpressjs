@@ -61,22 +61,21 @@ function displayPlantInfo() {
 
 // modal elements
 
-    // plant info modal
-    var modalButton = document.getElementById("modal-button")
-    var closeButton = document.querySelector("#close-button")
-    var modal = document.querySelector(".qmodal")
-    var searchModal = document.querySelector("#search-modal")
+// plant info modal
+var modalButton = document.getElementById("modal-button")
+var closeButton = document.querySelector("#close-button")
+var modal = document.querySelector(".qmodal")
+var searchModal = document.querySelector("#search-modal")
 
-    // search modal
-    var modalSearchButton = document.querySelector(".modal-search-button")
-
+// search modal
+var modalSearchButton = document.querySelector(".modal-search-button")
 
 
 // function openSearch
-function openSearch(){
+function openSearch() {
     searchModal.classList.remove("hide")
 }
-function closeModal(){
+function closeModal() {
     modal.classList.add("hide")
 }
 
@@ -188,4 +187,3 @@ function placeSearchCall() {
 
 }
 placeSearchCall()
-
