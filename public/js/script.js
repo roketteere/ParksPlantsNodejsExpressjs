@@ -1,6 +1,16 @@
+// import trefle fetch
+var trefleData = [];
+// get json
+var data = fetch('json/data.json').then(response => response.json()).then(data => {
+    console.log('DOES IT WORK: ', data);
+
+});
+
+
 // Save search history to local storage
 var search_history = [];
 var plants = [];
+
 
 // Element Variables
 var searchButton = document.querySelector("#search-button");
@@ -88,11 +98,11 @@ function fetchNationParkAPI(keyword) {
 }
 
 // Function that calls the trefle API
-function fetchTrefleAPI(keyword) {
-    fetch(`http://URL=>>>>${keyword}`).then(promise => promise.json()).then(data => {
-        console.log(data.results)
-    })
-};
+// fetch('https://trefle.io/api/v1/distributions/ala/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc').then(response => response.json()).then(data => {
+//     trefleData.push(data)
+//     localStorage.setItem('trefle-api', trefleData)
+
+// })
 
 
 // add event listener to search box
@@ -121,6 +131,9 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
         searchBox.value = ''
         findPlants()
+        fetchTrefle();
+        console.log('Fetch Data:\n', trefleData);
+
     }
 
 })
