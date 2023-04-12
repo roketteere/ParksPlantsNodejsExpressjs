@@ -29,17 +29,24 @@ const trefleData = []
 // wwww.site.com/
 // static files needed
 
-function getData() {
-    var url = new URL(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`)
-    const getTrefle = https.request(url, response => {
-        const data = [];
-        response.on('data', _ => data.push(_));
-        response.on('end', () => FS.writeFileSync('public/json/data.json', JSON.stringify(data.join())));
+// function getData() {
+//     var url = new URL(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`)
+//     const getTrefle = https.request(url, response => {
+//         response.on('data', data => data.push(_));
+//         response.on('end', () => FS.writeFileSync('public/json/data.json', data.join()));
 
-    })
-    getTrefle.end();
-}
-getData()
+//     })
+//     getTrefle.end();
+// }
+// getData()
+
+fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`).then(response => response.json()).then(data => {
+    FS.writeFileSync('public/json/data.json', JSON.stringify(data));
+
+    console.log('Data::', data);
+
+})
+
 
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))

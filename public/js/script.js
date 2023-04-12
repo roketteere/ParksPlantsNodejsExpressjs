@@ -1,12 +1,8 @@
 // import trefle fetch
 var trefleData = [];
 // get json
-var data = fetch('json/data.json').then(response => response.json()).then(data => { // console.log('Washington State Data: ', data);
-    console.log('Data::::: START ::::::\n', data.id, '\n\nDATA::::: END')
-    // for (var i = 0; i < data.length; i++) {
-    //     console.log('Name: ', data);
-
-    // }
+var data = fetch('json/data.json').then(response => response.json()).then(data => { // ds = JSON.stringify(data);
+    console.log(data.data[0]);
 
 });
 
