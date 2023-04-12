@@ -10,8 +10,9 @@ const fetchTrefle = https.request('https://trefle.io/api/v1/distributions/ala/pl
     response.on('data', _ => data.push(_));
     response.on('end', () => console.log(data.join()));
     trefleData.push(data);
+    fetchTrefle.end()
+
 });
-fetchTrefle.end()
 
 // static files needed
 app.use(express.static('public'))
@@ -22,7 +23,7 @@ app.use('/img', express.static(__dirname + 'public/img'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-app.get('', (request, response) => { // response.sendFile(__dirname + '/views/index.html')
+app.get('', (request, response) => { 
     response.render('index')
 })
 

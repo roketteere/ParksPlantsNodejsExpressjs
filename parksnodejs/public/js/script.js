@@ -74,7 +74,7 @@ function fetchNationParkAPI(keyword) {
     var state = ''
     var parkName = ''
     fetch(url).then(response => response.json()).then(data => {
-        for (var i = 0; i < data.data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             // console.log('DATA: ', data.data[i].states);
             // console.log('Data ', data.data[i].fullName);
             console.log('Data:', data);
