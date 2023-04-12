@@ -24,6 +24,7 @@ var card = document.getElementsByClassName("plant-card")
 function findPlants() {
     searchContainer.classList.add('hide')
     resultsPage.classList.remove('hide')
+    modalSearchButton.classList.remove('hide')
 }
 
 // create and append plant information
@@ -53,6 +54,30 @@ function displayPlantInfo() {
         cardContent.appendChild(scientificName)
     })
 }
+
+// modal elements
+
+    // plant info modal
+    var modalButton = document.getElementById("modal-button")
+    var closeButton = document.querySelector("#close-button")
+    var modal = document.querySelector(".qmodal")
+    var searchModal = document.querySelector("#search-modal")
+
+    // search modal
+    var modalSearchButton = document.querySelector(".modal-search-button")
+
+
+
+// function openSearch
+function openSearch(){
+    searchModal.classList.remove("hide")
+}
+function closeModal(){
+    modal.classList.add("hide")
+}
+
+modalSearchButton.addEventListener("click", openSearch)
+closeButton.addEventListener("click", closeModal)
 
 
 // save search to history
@@ -97,13 +122,13 @@ function fetchNationParkAPI(keyword) {
     })
 }
 
+
 // Function that calls the trefle API
-// fetch('https://trefle.io/api/v1/distributions/ala/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc').then(response => response.json()).then(data => {
-//     trefleData.push(data)
-//     localStorage.setItem('trefle-api', trefleData)
-
-// })
-
+function fetchTrefleAPI(keyword) {
+    fetch(`http://URL=>>>>${keyword}`).then(promise => promise.json()).then(data => {
+        console.log(data.results)
+    })
+};
 
 // add event listener to search box
 // searchBox.addEventListener('keydown', function (event) { // event.preventDefault();
@@ -160,24 +185,3 @@ function placeSearchCall() {
 }
 placeSearchCall()
 
-// function sdfjh() {
-//     const apiKey = 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP'; // Replace this with your actual MapQuest API key
-
-//     const location = 'Denver, CO'; // Replace this with the desired location
-//     const sicCode = 'sic:7999'; // SIC code for parks
-
-//     const apiUrl = `https://www.mapquestapi.com/search/v2/radius?origin=${
-//         encodeURIComponent(location)
-//     }&radius=10&maxMatches=10&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|${
-//         encodeURIComponent(sicCode)
-//     }&outFormat=json&key=${
-//         encodeURIComponent(apiKey)
-//     }`;
-
-//     fetch(apiUrl).then(response => response.json()).then(data => {
-//         console.log('Data Received:\n', data);
-//     }).catch(error => {
-//         console.error('Error fetching data:', error);
-//     });
-
-// }
