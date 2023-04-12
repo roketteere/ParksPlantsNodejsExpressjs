@@ -11,34 +11,7 @@ const exp = require('constants');
 // Trefle API call and save
 const trefleData = []
 
-// function getData(keyword) {
-//     var url = new URL(`https://trefle.io/api/v1/distributions/${keyword}/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`)
-//     const data = [];
-//     response.on('data', _ => data.push(_));
-//     response.on('end', () => FS.writeFileSync('public/json/data.json', JSON.stringify(data.join())));
 
-// }
-
-
-// FS.writeFile('trefle.json', console.log('Saving'), trefleData);
-
-// Pull Location from SEARCH BOX
-// send to get code
-
-
-// wwww.site.com/
-// static files needed
-
-// function getData() {
-//     var url = new URL(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`)
-//     const getTrefle = https.request(url, response => {
-//         response.on('data', data => data.push(_));
-//         response.on('end', () => FS.writeFileSync('public/json/data.json', data.join()));
-
-//     })
-//     getTrefle.end();
-// }
-// getData()
 
 fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`).then(response => response.json()).then(data => {
     FS.writeFileSync('public/json/data.json', JSON.stringify(data));
@@ -46,6 +19,7 @@ fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCV
     console.log('Data::', data);
 
 })
+
 
 
 app.use(express.static('public'))
