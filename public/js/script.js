@@ -78,12 +78,6 @@ function displayPlantInfo(plantArray) {
 }
 
 
-        // fill each section with plant data
-        plantImage.setAttribute("src", data[i].plantImage)
-        cardTitle.textContent = data[i].commonName
-        scienceName.textContent = data[i].scientificName
-    }
-}
 displayPlantInfo(plantBanana)
 // modal elements
 // plant info modal
@@ -92,25 +86,25 @@ var closeButton = document.querySelector("#close-button")
 var modal = document.querySelector(".qmodal")
 var searchModal = document.querySelector("#search-modal")
 
-    // search modal
-    var modalSearchButton = document.querySelector(".modal-search-button")
+// search modal
+var modalSearchButton = document.querySelector(".modal-search-button")
 
 
 // modal functions
 
-    // open search modal
-    function openSearch() {
-        searchModal.classList.remove("hide")
-    }
+// open search modal
+function openSearch() {
+    searchModal.classList.remove("hide")
+}
 
-    // close current modal
-    function closeModal() {
-        modal.classList.add("hide")
-    }
+// close current modal
+function closeModal() {
+    modal.classList.add("hide")
+}
 
-        // event listeners
-        modalSearchButton.addEventListener("click", openSearch)
-        closeButton.addEventListener("click", closeModal)
+// event listeners
+modalSearchButton.addEventListener("click", openSearch)
+closeButton.addEventListener("click", closeModal)
 
 // function openSearch
 function openSearch() {
