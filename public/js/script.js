@@ -2,8 +2,10 @@
 var trefleData = [];
 // get json
 var dataItems = []
-var searchFilter = []
-
+var searchResults = []
+var lastSearchedItem = []
+var tempResults = []
+var plant_array = []
 // var dummyArray = fetch('https://dummyjson.com/products/').then(res => res.json()).then(json => console.log(json))
 
 function getData() {
@@ -32,12 +34,12 @@ var card = document.getElementsByClassName("plant-card")
 function findPlants() {
     searchContainer.classList.add('hide')
     resultsPage.classList.remove('hide')
-    modalSearchButton.classList.remove('hide')
+    // modalSearchButton.classList.remove('hide')
 }
 
 // create and append plant information
-function displayPlantInfo() {
-    plants.forEach(function (plants) {
+function displayPlantInfo(plantArray) {
+    plantArray.forEach(function (plant) {
         var plantCard = document.createElement("div")
         plantCard.classList.add("col", "s6", "m4", "xl2", "plant-card");
         var card = document.createElement("div")
@@ -45,13 +47,13 @@ function displayPlantInfo() {
         var cardImage = document.createElement("div")
         cardImage.classList.add("card-image")
         var plantImage = document.createElement("img")
-        plantImage.setAttribute("src", plants[i].imageUrl)
+        plantImage.setAttribute("src", plant.imageUrl)
         var cardContent = document.createElement("div")
         cardContent.classList.add("card-content")
         var cardTitle = document.createElement("span")
-        cardTitle.classList.add("card-title", truncate)
-        var scientificName = document.createElement("p")
-        scientificName.classList.add("scientific-name", "truncate")
+        cardTitle.classList.add("card-title", "truncate")
+        var scienceName = document.createElement("p")
+        scienceName.classList.add("scientific-name", "truncate")
         // append data
         resultsPage.appendChild(plantCard)
         plantCard.appendChild(card)
@@ -59,7 +61,12 @@ function displayPlantInfo() {
         cardImage.appendChild(plantImage)
         card.appendChild(cardContent)
         cardContent.appendChild(cardTitle)
-        cardContent.appendChild(scientificName)
+        cardContent.appendChild(scienceName)
+        // fill each section with plant data
+        plantImage.setAttribute("src", plant.plantImage)
+        cardTitle.textContent = plant.commonName
+        scienceName.textContent = plant.scientificName
+
     })
 }
 
@@ -104,28 +111,28 @@ function addToHistory(plant_name) { // fetchNationParkAPI(plant_name)
 
 }
 
-// fetch to national park api and get park name and state, then return them
-function fetchNationParkAPI(keyword) {
-    var oth = `https://www.mapquestapi.com/search/v2/search?q=${keyword}&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&maxMatches=10&shapePoints=40.099998,-76.305603&hostedData=mqap.ntpois`
+// // fetch to national park api and get park name and state, then return them
+// // function fetchNationParkAPI(keyword) {
+// //     var oth = `https://www.mapquestapi.com/search/v2/search?q=${keyword}&key=ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP&maxMatches=10&shapePoints=40.099998,-76.305603&hostedData=mqap.ntpois`
 
 
-    var API_URL = `https://developer.nps.gov/api/v1/parks?q=${keyword}&limit=10&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
-    var url = new URL(oth)
-    var state = ''
-    var parkName = ''
-    fetch(url).then(response => response.json()).then(data => {
-        for (var i = 0; i < data.length; i++) {
-            // console.log('DATA: ', data.data[i].states);
-            // console.log('Data ', data.data[i].fullName);
-            console.log('Data:', data);
+// //     var API_URL = `https://developer.nps.gov/api/v1/parks?q=${keyword}&limit=10&api_key=bh7IwlBKJxYuDvsGfVs2ogc9sumwDTYJJZi11Yea`
+// //     var url = new URL(oth)
+// //     var state = ''
+// //     var parkName = ''
+// //     fetch(url).then(response => response.json()).then(data => {
+// //         for (var i = 0; i < data.length; i++) {
+// //             // console.log('DATA: ', data.data[i].states);
+// //             // console.log('Data ', data.data[i].fullName);
+// //             console.log('Data:', data);
 
-        }
+// //         }
 
-        // state = data.data[0].states;
-        // parkName = data.data[0].fullName;
-        // console.log('Park Information: \n', state, "\n", parkName);
-    })
-}
+//         // state = data.data[0].states;
+//         // parkName = data.data[0].fullName;
+//         // console.log('Park Information: \n', state, "\n", parkName);
+//     })
+// }
 
 // Function that calls the trefle API
 function fetchTrefleAPI(keyword) {
@@ -140,6 +147,34 @@ function fetchTrefleAPI(keyword) {
 //     plantName = inputEl.value;
 //     console.log(plantName);
 // })
+class Plant {
+    constructor(commonName, scientificName, plantImage, year, genus, family, synonyms) {
+        this.commonName = commonName
+        this.scientificName = scientificName;
+        this.plantImage = plantImage
+        this.year = year
+        this.genus = genus
+        this.family = family
+        this.synonyms = synonyms
+    }
+}
+
+
+function sortTrefleAreaSearch(array) { //
+    let plantArray = []
+    for (let i = 0; i < array.length; i++) {
+        let commonName = array[i].common_name;
+        let scientificName = array[i].scientific_name
+        let plantImage = array[i].image_url
+        let year = array[i].year
+        let genus = array[i].genus
+        let family = array[i].family
+        let synonyms = array[i].synonyms
+        let plant = new Plant(commonName, scientificName, plantImage, year, genus, family, synonyms)
+        plantArray.push(plant)
+    }
+    return plantArray
+}
 
 // Smart Search Feature
 //
@@ -177,10 +212,26 @@ function smartSearchAlpha(event, searchable_data =[], search_filter =[]) {
         })
     })
     // finally return the smartSearch filtered results (Should use function to act on data as it comes in)
-    return console.log('Matched: ', searched_data);
+    // return console.log('Searching... ', searched_data);
+    searchResults.unshift(searched_data)
+    console.log('Shifted Items: ', searchResults[0])
+    return;
+
+
+    // if (searched_data.length > 0 && searched_data < 2) {
+    //     console.log('Search Results 0', searchResults);
+
+    // } else if (searched_data.length > 1) {
+    //     console.log('Search Results: 1+', searchResults[-1]);
+
+    // }
+
+
+    // var cardInformation = displayPlantInfo(searched_data);
+
 
 };
-
+// currently broken DO NOT USE
 function smartSearchBeta(event, searchable_data =[], search_filter =[]) { // prevent the page from reloading
     event.preventDefault();
     // get the search input and convert it to lowercase, then trim it
@@ -196,16 +247,19 @@ function smartSearchBeta(event, searchable_data =[], search_filter =[]) { // pre
 
 
     })
+    // ADD our function here to grab and display items to card
     return console.log('Smart Search Results: ', searched_data)
 
 };
-
+// common_name
+// scientific_name
+// image_url
 
 // Keyup event listener
 // add event listener to search box
 searchBox.addEventListener('keyup', function (event) { // event.preventDefault();
     var inputEl = event.target;
-    smartSearchBeta(event, dataItems, filter = ['common']);
+    smartSearchAlpha(event, dataItems, filter = ['family']);
     plantName = inputEl.value;
     console.log(plantName);
 })
@@ -217,11 +271,12 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
         event.preventDefault();
         addToHistory(event.target.value);
         saveSearch(search_history);
-        fetchNationParkAPI(plantName);
+        const plantArray = sortTrefleAreaSearch(searchResults[0])
+        displayPlantInfo(plantArray);
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
         searchBox.value = ''
         findPlants()
-        fetchTrefle();
+
         console.log('Fetch Data:\n', trefleData);
 
     }
@@ -234,7 +289,7 @@ searchButton.addEventListener('click', function (event) {
     event.target;
     saveSearch(search_history);
     addToHistory(plantName);
-    fetchNationParkAPI(plantName);
+    // fetchNationParkAPI(plantName);
     console.log('City Saved To History: ', plantName);
     searchBox.value = ''
     findPlants()
@@ -248,5 +303,5 @@ function placeSearchCall() {
     placeSearch({key: 'ceiWumpWrG5aqAOi4bsRb8BIkjPl3vtP', container: document.querySelector("#place-search-input")});
 
 }
-placeSearchCall()
+// placeSearchCall()
 getData()
