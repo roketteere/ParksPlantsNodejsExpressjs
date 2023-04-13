@@ -1,5 +1,5 @@
 // import trefle fetch
-var trefleData = [];
+// var trefleData = [];
 // get json
 var dataItems = []
 var searchResults = []
@@ -19,7 +19,7 @@ function getData() {
 
 // Save search history to local storage
 var search_history = [];
-var plants = [];
+// var plants = [];
 
 // Element Variables
 var searchButton = document.querySelector("#search-button");
@@ -33,19 +33,25 @@ var card = document.getElementsByClassName("plant-card")
 function findPlants() {
     searchContainer.classList.add('hide')
     resultsPage.classList.remove('hide')
+
     // modalSearchButton.classList.remove('hide')
+
 }
 
+let plantBanana = sortTrefleAreaSearch(banana)
 // create and append plant information
+
 function displayPlantInfo(plantArray) {
     plantArray.forEach(function (plant) {
+
         var plantCard = document.createElement("div")
         plantCard.classList.add("col", "s6", "m4", "xl2", "plant-card");
         var card = document.createElement("div")
         card.classList.add("card", "hoverable", "rounded")
         var cardImage = document.createElement("div")
-        cardImage.classList.add("card-image")
+        cardImage.classList.add("card-image", "overflow", "plant-image")
         var plantImage = document.createElement("img")
+
         plantImage.setAttribute("src", plant.imageUrl)
         var cardContent = document.createElement("div")
         cardContent.classList.add("card-content")
@@ -53,6 +59,7 @@ function displayPlantInfo(plantArray) {
         cardTitle.classList.add("card-title", "truncate")
         var scienceName = document.createElement("p")
         scienceName.classList.add("scientific-name", "truncate")
+
         // append data
         resultsPage.appendChild(plantCard)
         plantCard.appendChild(card)
@@ -61,6 +68,7 @@ function displayPlantInfo(plantArray) {
         card.appendChild(cardContent)
         cardContent.appendChild(cardTitle)
         cardContent.appendChild(scienceName)
+
         // fill each section with plant data
         plantImage.setAttribute("src", plant.plantImage)
         cardTitle.textContent = plant.commonName
@@ -69,6 +77,14 @@ function displayPlantInfo(plantArray) {
     })
 }
 
+
+        // fill each section with plant data
+        plantImage.setAttribute("src", data[i].plantImage)
+        cardTitle.textContent = data[i].commonName
+        scienceName.textContent = data[i].scientificName
+    }
+}
+displayPlantInfo(plantBanana)
 // modal elements
 // plant info modal
 var modalButton = document.getElementById("modal-button")
@@ -76,8 +92,25 @@ var closeButton = document.querySelector("#close-button")
 var modal = document.querySelector(".qmodal")
 var searchModal = document.querySelector("#search-modal")
 
-// search modal
-var modalSearchButton = document.querySelector(".modal-search-button")
+    // search modal
+    var modalSearchButton = document.querySelector(".modal-search-button")
+
+
+// modal functions
+
+    // open search modal
+    function openSearch() {
+        searchModal.classList.remove("hide")
+    }
+
+    // close current modal
+    function closeModal() {
+        modal.classList.add("hide")
+    }
+
+        // event listeners
+        modalSearchButton.addEventListener("click", openSearch)
+        closeButton.addEventListener("click", closeModal)
 
 // function openSearch
 function openSearch() {
