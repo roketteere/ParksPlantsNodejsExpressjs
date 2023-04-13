@@ -1,16 +1,17 @@
 const express = require('express');
 const https = require('https'); // Use the https module instead of http
 const path = require('path');
-const app = express();
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const FS = require('fs');
-const localStorage = require('localStorage');
 const exp = require('constants');
+
+// Create Express App
+const app = express();
 
 
 // Trefle API call and save
 const trefleData = []
-
 
 
 fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`).then(response => response.json()).then(data => {
@@ -20,8 +21,7 @@ fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCV
 
 })
 
-
-
+// create and set routes to serve static files to front end
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))

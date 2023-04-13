@@ -12,7 +12,6 @@ var data = fetch('json/data.json').then(response => response.json()).then(data =
 var search_history = [];
 var plants = [];
 
-
 // Element Variables
 var searchButton = document.querySelector("#search-button");
 var searchBox = document.querySelector("#place-search-input");
