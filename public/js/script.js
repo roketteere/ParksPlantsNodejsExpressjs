@@ -131,14 +131,6 @@ function fetchTrefleAPI(keyword) {
 };
 
 // add event listener to search box
-// searchBox.addEventListener('keydown', function (event) { // event.preventDefault();
-//     var inputEl = event.target;
-//     plantName = inputEl.value;
-//     console.log(plantName);
-// })
-
-// Keyup event listener
-// add event listener to search box
 searchBox.addEventListener('keyup', function (event) { // event.preventDefault();
     var inputEl = event.target;
     plantName = inputEl.value;
@@ -176,7 +168,6 @@ searchButton.addEventListener('click', function (event) {
 
 
 });
-
 
 // Auto Complete directly from MapQuest API
 function placeSearchCall() {
