@@ -38,7 +38,7 @@ function findPlants() {
 
 }
 
-let plantBanana = sortTrefleAreaSearch(banana)
+
 // create and append plant information
 
 function displayPlantInfo(plantArray) {
@@ -78,7 +78,6 @@ function displayPlantInfo(plantArray) {
 }
 
 
-displayPlantInfo(plantBanana)
 // modal elements
 // plant info modal
 var modalButton = document.getElementById("modal-button")
@@ -212,8 +211,6 @@ searchBox.addEventListener('keypress', function (event) { // event.preventDefaul
         console.log('::KEYBOARD:: City Saved To History: ', plantName);
         searchBox.value = ''
         findPlants()
-
-        console.log('Fetch Data:\n', trefleData);
 
     }
 
