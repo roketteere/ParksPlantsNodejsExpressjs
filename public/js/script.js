@@ -1,17 +1,24 @@
 // import trefle fetch
 var trefleData = [];
 // get json
+var dataItems = []
+var searchFilter = []
 
-var data = fetch('json/data.json').then(response => response.json()).then(data => { // ds = JSON.stringify(data);
-    console.log(data.data[0]);
+// var dummyArray = fetch('https://dummyjson.com/products/').then(res => res.json()).then(json => console.log(json))
 
-});
+function getData() {
+    fetch('json/ari.json').then(response => response.json()).then(data => { // ds = JSON.stringify(data);
+        for (var i = 0; i < data.length; i++) { // console.log('Common Name:', data[i].common_name);
+            dataItems.push(data[i])
 
+        }
+
+    })
+};
 
 // Save search history to local storage
 var search_history = [];
 var plants = [];
-
 
 // Element Variables
 var searchButton = document.querySelector("#search-button");
@@ -57,7 +64,6 @@ function displayPlantInfo() {
 }
 
 // modal elements
-
 // plant info modal
 var modalButton = document.getElementById("modal-button")
 var closeButton = document.querySelector("#close-button")
@@ -67,7 +73,6 @@ var searchModal = document.querySelector("#search-modal")
 // search modal
 var modalSearchButton = document.querySelector(".modal-search-button")
 
-
 // function openSearch
 function openSearch() {
     searchModal.classList.remove("hide")
@@ -76,9 +81,9 @@ function closeModal() {
     modal.classList.add("hide")
 }
 
-modalSearchButton.addEventListener("click", openSearch)
-closeButton.addEventListener("click", closeModal)
-
+// hide/unhide search modal
+// modalSearchButton.addEventListener("click", openSearch)
+// closeButton.addEventListener("click", closeModal)
 
 // save search to history
 function saveSearch(global_history) {
@@ -122,7 +127,6 @@ function fetchNationParkAPI(keyword) {
     })
 }
 
-
 // Function that calls the trefle API
 function fetchTrefleAPI(keyword) {
     fetch(`http://URL=>>>>${keyword}`).then(promise => promise.json()).then(data => {
@@ -137,10 +141,71 @@ function fetchTrefleAPI(keyword) {
 //     console.log(plantName);
 // })
 
+// Smart Search Feature
+//
+// event = event.target (in this case the input box)
+// searchable_data = array of data we want to make "smartSearch"
+// filtered_data = data we want to show up in our search query
+// search_filter = items passed to the filter so they can be added to the fi
+function smartSearchAlpha(event, searchable_data =[], search_filter =[]) {
+    //
+    // prevent the page from refreshing
+    event.preventDefault();
+    // log each key as it is typed (on keyup so we can account for 'backspace')
+    var search_input = event.target.value;
+    // saved the filtered items
+    var searched_data = searchable_data.filter((data) => {
+        //
+        // holds filter parameters
+        var search_filter_items = "";
+        // iterate forEach filter item and then add them to filter.
+        search_filter.forEach((arguments) => {
+            //
+            // before adding them, convert to lowercase and trim them
+            search_filter_items += data.hasOwnProperty(arguments) && data[arguments].toLowerCase().trim() + " "
+        });
+
+        // use (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+        // use Object.keys(object_to_search).some(index_enumerable_value ex obj[idx_enum_val])
+        // Will return the <value> at that <key> or index [key:value]
+        return Object.keys(data).some((key) => {
+            // return the first successful search value  matched
+            // before the values are return, strigify, trim, and filter using the input values
+            // that the user has just currently keyed/typed/pressed, etc (on keyup)
+            // now using the or || operator, we can search mutiple items with matching names not just one
+            return((data[key]) !== undefined && data[key] !== null && JSON.stringify(data[key]).toLowerCase().trim().includes(search_input)) || search_filter_items.includes(search_input)
+        })
+    })
+    // finally return the smartSearch filtered results (Should use function to act on data as it comes in)
+    return console.log('Matched: ', searched_data);
+
+};
+
+function smartSearchBeta(event, searchable_data =[], search_filter =[]) { // prevent the page from reloading
+    event.preventDefault();
+    // get the search input and convert it to lowercase, then trim it
+    var search_input = event.target.value.toLowerCase().trim();
+    // create variable expression to filter data based on the search input and the search filter
+    var searched_data = searchable_data.filter((data) => { // create a string with concatenated values for the type of search filters we need
+        var search_filter_items = search_filter.filter((property) => data.hasOwnProperty(property)).map((property) => data[property].toLowerCase().trim().join(' '));
+        // Now we check to see if the properties inside the data match our search input
+        return Object.keys(data).some((key) => {
+            return((data[key]) !== undefined && data[key] !== null && JSON.stringify(data[key]).toLowerCase().trim().includes(search_input))
+
+        }) || search_filter_items.includes(search_input)
+
+
+    })
+    return console.log('Smart Search Results: ', searched_data)
+
+};
+
+
 // Keyup event listener
 // add event listener to search box
 searchBox.addEventListener('keyup', function (event) { // event.preventDefault();
     var inputEl = event.target;
+    smartSearchBeta(event, dataItems, filter = ['common']);
     plantName = inputEl.value;
     console.log(plantName);
 })
@@ -184,3 +249,4 @@ function placeSearchCall() {
 
 }
 placeSearchCall()
+getData()

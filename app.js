@@ -12,14 +12,12 @@ const exp = require('constants');
 const trefleData = []
 
 
-
 fetch(`https://trefle.io/api/v1/distributions/WAS/plants?token=CDgScJ83lB1EMvnCVzxGDNghxmPU2IgFoqc_McmRAIc`).then(response => response.json()).then(data => {
     FS.writeFileSync('public/json/data.json', JSON.stringify(data));
 
-    console.log('Data::', data);
+    // console.log(data.data);
 
 })
-
 
 
 app.use(express.static('public'))
